@@ -1,0 +1,19 @@
+docs/rustnab-plan.md
+  s_f869a35623199b::t_7e7c2e92db7297 66
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "9c19967e98891ab236dbe4f3aea0bb8bae350ed8",
+  "prompts": {},
+  "sessions": {
+    "s_f869a35623199b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d78a8af1-7525-4219-abd5-255a9578449f",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Thomas Lekanger <thomas.lekanger@hotmail.com>"
+    }
+  }
+}
