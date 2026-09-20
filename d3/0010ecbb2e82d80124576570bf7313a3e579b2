@@ -1,0 +1,27 @@
+.github/workflows/ci.yml
+  s_f869a35623199b::t_997c3cf8c472d0 24-30
+docs/README.md
+  s_f869a35623199b::t_6a938cc063fcd6 5
+docs/m0-spikes.md
+  s_f869a35623199b::t_2800b0311f0a9b 1-370
+docs/rustnab-plan.md
+  s_f869a35623199b::t_a7d093d852d445 100,146
+hardware/overlays/tagtagtag-sound-overlay.dts
+  s_f869a35623199b::t_783419185db3f3 1-124
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "d30010ecbb2e82d80124576570bf7313a3e579b2",
+  "prompts": {},
+  "sessions": {
+    "s_f869a35623199b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d78a8af1-7525-4219-abd5-255a9578449f",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Thomas Lekanger <thomas.lekanger@hotmail.com>"
+    }
+  }
+}
