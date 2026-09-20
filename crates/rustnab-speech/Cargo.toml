@@ -1,0 +1,13 @@
+[package]
+name = "rustnab-speech"
+description = "Speech recognition and synthesis behind a provider trait: sherpa-onnx on aarch64, OpenAI-compatible HTTP anywhere."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+
+[lints]
+workspace = true

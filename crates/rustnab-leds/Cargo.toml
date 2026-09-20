@@ -1,0 +1,13 @@
+[package]
+name = "rustnab-leds"
+description = "Privileged helper that drives the NeoPixels over PWM DMA, so the daemon itself never needs root."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+
+[lints]
+workspace = true

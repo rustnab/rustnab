@@ -1,0 +1,13 @@
+[package]
+name = "rustnab-hal-sim"
+description = "Simulated hardware so the daemon runs on a laptop and in tests without a board."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+
+[lints]
+workspace = true

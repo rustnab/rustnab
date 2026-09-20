@@ -1,0 +1,13 @@
+[package]
+name = "st25r39xx"
+description = "Userspace I2C driver for the ST25R3916 and ST25R3917 NFC readers."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+
+[lints]
+workspace = true

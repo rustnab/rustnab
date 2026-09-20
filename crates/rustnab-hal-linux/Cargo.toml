@@ -1,0 +1,13 @@
+[package]
+name = "rustnab-hal-linux"
+description = "Hardware implementations for the tagtagtag board on Linux: GPIO character device, I2C, ALSA, LED helper client."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+
+[lints]
+workspace = true
