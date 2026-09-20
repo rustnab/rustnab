@@ -1,0 +1,95 @@
+.cargo/config.toml
+  s_f869a35623199b::t_584536760f2844 1-2
+.github/workflows/ci.yml
+  s_f869a35623199b::t_93aa9da5047519 1-44
+.gitignore
+  s_f869a35623199b::t_dc3f98464187f3 1-2
+Cargo.lock
+  s_f869a35623199b::t_5f3399da1104b3 1-47
+Cargo.toml
+  s_f869a35623199b::t_fbe20313625cec 1-24
+LICENSE
+  s_f869a35623199b::t_303bfd4cbccf7c 1-674
+README.md
+  s_f869a35623199b::t_a06dc2e966e3cb 1-42
+crates/rustnab-api/Cargo.toml
+  s_f869a35623199b::t_ea46062b4f30cf 1-13
+crates/rustnab-api/src/lib.rs
+  s_f869a35623199b::t_145ee2af37bff2 1
+crates/rustnab-core/Cargo.toml
+  s_f869a35623199b::t_2a9e8bc06a849c 1-13
+crates/rustnab-core/src/lib.rs
+  s_f869a35623199b::t_e7bd5ac080b371 1
+crates/rustnab-hal-linux/Cargo.toml
+  s_f869a35623199b::t_c97b789a774efe 1-13
+crates/rustnab-hal-linux/src/lib.rs
+  s_f869a35623199b::t_0b124fbd4ed62e 1
+crates/rustnab-hal-sim/Cargo.toml
+  s_f869a35623199b::t_be74ecf92c6e1e 1-13
+crates/rustnab-hal-sim/src/lib.rs
+  s_f869a35623199b::t_eebc4d58ea9971 1
+crates/rustnab-hal/Cargo.toml
+  s_f869a35623199b::t_4b67fffcf562c0 1-13
+crates/rustnab-hal/src/lib.rs
+  s_f869a35623199b::t_8e75fbd5639af8 1
+crates/rustnab-leds/Cargo.toml
+  s_f869a35623199b::t_8e7266f738baf6 1-13
+crates/rustnab-leds/src/main.rs
+  s_f869a35623199b::t_f853de0ed28822 1-3
+crates/rustnab-protocol/Cargo.toml
+  s_f869a35623199b::t_a694e5dbede0b9 1-13
+crates/rustnab-protocol/src/lib.rs
+  s_f869a35623199b::t_2c803bb1994801 1
+crates/rustnab-services/Cargo.toml
+  s_f869a35623199b::t_75491c5547ef80 1-13
+crates/rustnab-services/src/lib.rs
+  s_f869a35623199b::t_60cc12dabd9743 1
+crates/rustnab-speech/Cargo.toml
+  s_f869a35623199b::t_cd948017da12c9 1-13
+crates/rustnab-speech/src/lib.rs
+  s_f869a35623199b::t_56355f07bd99a6 1
+crates/rustnab/Cargo.toml
+  s_f869a35623199b::t_90a8b66955b797 1-13
+crates/rustnab/src/main.rs
+  s_f869a35623199b::t_025cef6ea1900e 1-3
+crates/st25r39xx/Cargo.toml
+  s_f869a35623199b::t_3f1385e92eefaf 1-13
+crates/st25r39xx/src/lib.rs
+  s_f869a35623199b::t_bdea1760095096 1
+docs/README.md
+  s_f869a35623199b::t_a90f3e1ddd1319 1-14
+docs/hardware-models.md
+  s_f869a35623199b::t_9db23be90d34da 1-633
+docs/hardware-spec.md
+  s_f869a35623199b::t_452e8882d5c036 1-678
+docs/packet-reference.md
+  s_f869a35623199b::t_cef7f8f36e5cb0 1-442
+docs/protocol-spec.md
+  s_f869a35623199b::t_d6f741ef92f89d 1-518
+docs/rustnab-plan.md
+  s_f869a35623199b::t_31c8dd43e9567d 1-161
+docs/service-architecture.md
+  s_f869a35623199b::t_e612f7dc9764d1 1-833
+docs/state-machine.md
+  s_f869a35623199b::t_27fa5c085a1c67 1-829
+justfile
+  s_f869a35623199b::t_d9e032ca4acbe6 1-27
+rust-toolchain.toml
+  s_f869a35623199b::t_fc0d7d331a9806 1-4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "754d8d4426a1ac168b9cb31bd65f0a28f54d4692",
+  "prompts": {},
+  "sessions": {
+    "s_f869a35623199b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d78a8af1-7525-4219-abd5-255a9578449f",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Thomas Lekanger <thomas.lekanger@hotmail.com>"
+    }
+  }
+}
