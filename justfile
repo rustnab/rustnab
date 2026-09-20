@@ -25,3 +25,7 @@ deploy host target=zero2:
     cargo zigbuild --release --target {{target}} -p rustnab -p rustnab-leds
     scp target/{{target}}/release/rustnab target/{{target}}/release/rustnab-leds {{host}}:/tmp/
     ssh {{host}} 'sudo install -m 755 /tmp/rustnab /tmp/rustnab-leds /usr/local/bin/ && sudo systemctl restart rustnab-leds rustnab'
+
+# Run a milestone 0 spike on a rabbit: just spike user@rabbit.local 11 [--no-interactive]
+spike host what *args:
+    spikes/run.sh {{host}} {{what}} {{args}}

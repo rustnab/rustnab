@@ -21,6 +21,13 @@ jobs:
       - run: cargo clippy --workspace --all-targets -- -D warnings
       - run: cargo test --workspace
 
+  spikes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get install -y shellcheck
+      - run: shellcheck -x -s bash -S warning spikes/*.sh
+
   overlay:
     runs-on: ubuntu-latest
     steps:

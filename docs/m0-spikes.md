@@ -2,6 +2,17 @@
 
 Three experiments decide whether the plan holds before any daemon code is written. Each one ends in a go or no-go. Run the sound and ears spikes on the Zero W while it is still in the rabbit, then swap in the Zero 2 W for the speech benchmark. Nothing here needs rustnab installed, only stock Raspberry Pi OS and shell tools.
 
+Every spike exists twice: as the manual steps below, and as a script in `spikes/` that runs the same steps and writes a results table to `spikes/results/`. Use the scripts. The manual steps are the explanation of what the scripts do and the fallback when one of them misbehaves.
+
+From a laptop, `spikes/run.sh user@rabbit.local 11` pushes the scripts and the overlay to the rabbit over SSH, runs the script whose name starts with `11`, and pulls the results back into `spikes/results/<host>/`. Steps that need a person at the rabbit (plugging a cable, turning an ear, speaking) show a prompt with a countdown. Pass `--no-interactive` to skip them. The script order is:
+
+1. `00-prepare.sh`, packages and I2C, once per card.
+2. `01-bus.sh`, I2C scan.
+3. `10-sound-install.sh`, overlay and `config.txt`, then reboot.
+4. `11-sound-test.sh`.
+5. `20-ears.sh`.
+6. `30-speech-bench.sh`, Zero 2 W only.
+
 Record results in the tables at the end of each spike and commit them. A number measured on the board is worth more than any estimate in the plan.
 
 ## Prepare the card
