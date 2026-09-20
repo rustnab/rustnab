@@ -1,0 +1,41 @@
+.github/workflows/ci.yml
+  s_f869a35623199b::t_c4319a95388aed 24-30
+docs/m0-spikes.md
+  s_f869a35623199b::t_fbef4e57beba09 5-15
+justfile
+  s_f869a35623199b::t_46ba7603e08537 28-31
+spikes/.gitignore
+  s_f869a35623199b::t_598b2a6961403a 1
+spikes/00-prepare.sh
+  s_f869a35623199b::t_a0c253082b170c 1-16
+spikes/01-bus.sh
+  s_f869a35623199b::t_25f0bd35aad4ae 1-24
+spikes/10-sound-install.sh
+  s_f869a35623199b::t_51952014649d4c 1-33
+spikes/11-sound-test.sh
+  s_f869a35623199b::t_cd5cc21eab5f6c 1-116
+spikes/20-ears.sh
+  s_f869a35623199b::t_15d79317d8805d 1-75
+spikes/30-speech-bench.sh
+  s_f869a35623199b::t_8aec3ad42abb32 1-117
+spikes/lib.sh
+  s_f869a35623199b::t_6aa9661195b71e 1-78
+spikes/run.sh
+  s_f869a35623199b::t_3f75dc5d7f80fa 1-43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "8bf165e80c6719b5148e3b07dda415d5d7a0651c",
+  "prompts": {},
+  "sessions": {
+    "s_f869a35623199b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d78a8af1-7525-4219-abd5-255a9578449f",
+        "model": "claude-fable-5-1"
+      },
+      "human_author": "Thomas Lekanger <thomas.lekanger@hotmail.com>"
+    }
+  }
+}
