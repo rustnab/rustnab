@@ -2,7 +2,7 @@
 
 This directory holds the plan for rustnab, the Rust replacement for pynab, and reference documents that describe pynab as it behaves today. The reference documents exist so that rustnab stays wire-compatible with pynab services and reproduces the rabbit's behavior. They were written before the rustnab decisions were made, so where they assume something the plan rules out (the 2018 board, reading the Postgres database, Rust type sketches), the plan wins.
 
-Start with [the plan](rustnab-plan.md). It records every decision, the reason for it, the milestones and the open risks.
+Start with [the plan](rustnab-plan.md). It records every decision, the reason for it, the milestones and the open risks. Then [the milestone 0 spikes](m0-spikes.md), the hardware experiments that must pass before daemon code is written. The sound overlay they install is in `hardware/overlays`.
 
 Reference documents:
 

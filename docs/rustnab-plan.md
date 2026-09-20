@@ -97,7 +97,7 @@ WiFi onboarding stays with comitup from Debian. No maintained Rust captive porta
 
 Recognition and synthesis sit behind a provider trait so users pick their privacy level. Two providers ship:
 
-- Local, aarch64 only: the official `sherpa-onnx` crate for both recognition and synthesis. One native dependency to cross-compile. The archived `sherpa-rs` crate is not used. First picks are Moonshine tiny (its cost scales with utterance length, and a French fine-tune exists) for recognition, and Piper `fr_FR` and `en_GB` at low or x_low quality for synthesis. Piper medium is already slow on a Pi 4. These picks are reconsidered if the milestone 0 benchmark is unsatisfying.
+- Local, aarch64 only: the official `sherpa-onnx` crate for both recognition and synthesis. One native dependency to cross-compile. The archived `sherpa-rs` crate is not used. Recognition candidates are Moonshine tiny for English (its cost scales with utterance length, but sherpa-onnx ships no French Moonshine), the Kroko streaming Zipformer for French, and a NeMo fast-conformer that covers French and English in one model. Synthesis candidates are Piper `fr_FR` and `en_GB` voices at low quality. Piper medium is already slow on a Pi 4. The milestone 0 benchmark picks among them, see [m0-spikes.md](m0-spikes.md).
 - Cloud: any OpenAI-compatible HTTP endpoint. One implementation covers hosted vendors and self-hosted Whisper servers, which gives self-hosters a middle privacy tier.
 
 Listening starts when the user holds the head button, as in pynab. No wake word. Always-on capture on a 512 MB board is a separate project.
@@ -143,7 +143,7 @@ Milestone 4, distribution. The `st25r39xx` crate and NFC card support, the Zero 
 
 ## Open risks
 
-- The Moonshine French export on Hugging Face may not match the model layout sherpa-onnx expects. The benchmark in milestone 0 settles this.
+- No French Moonshine exists in sherpa-onnx format. The French recognizer will be a different architecture from the English one unless the multilingual NeMo model is fast enough, which milestone 0 measures.
 - Every speech number we have comes from other boards or from unverified exports. Treat them as hypotheses until measured on the Zero 2 W.
 - The `rs_ws281x` LED crate was last published in December 2023. Nobody has confirmed or denied that it works on a Zero 2 W with kernel 6.x. The privileged helper isolates the blast radius if it does not.
 - Zig linking sherpa-onnx's static C++ archives is untested for this project.

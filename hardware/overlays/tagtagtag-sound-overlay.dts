@@ -1,0 +1,124 @@
+// Sound card overlay for the tagtagtag 2019/2021 board: WM8960 codec on I2C,
+// I2S from the Pi, MAX9759 speaker amplifier.
+//
+// Uses the mainline wm8960 codec and simple-audio-card, no out-of-tree modules.
+// The board's crystal is 12.000 MHz, which divides into no standard sample rate,
+// so the codec must run its PLL. Mainline only enters the PLL path when the
+// clock is declared on the codec's I2C node (it reads it in the I2C probe as
+// the PLL input). A clock on the DAI link alone leaves the PLL input at zero
+// and the codec silently runs at 46875 Hz. If dmesg shows
+// "slave mode, but proceeding with no clock configuration", that is the bug.
+//
+// The amplifier (shutdown GPIO 7, mute GPIO 8) and the volume switches
+// (GPIO 22 and 27) are not bound to kernel drivers. Raspberry Pi kernels do not
+// ship the max9759 module, and mainline's refuses to probe without gain pins
+// this board does not wire. rustnab drives those pins from userspace. Here the
+// amplifier pins are only pulled down so the amplifier stays in shutdown until
+// rustnab claims them, instead of powering up unmuted at boot.
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2835";
+
+	fragment@0 {
+		target = <&i2s_clk_producer>;
+		__overlay__ {
+			status = "okay";
+		};
+	};
+
+	fragment@1 {
+		target-path = "/";
+		__overlay__ {
+			wm8960_mclk: wm8960_mclk {
+				compatible = "fixed-clock";
+				#clock-cells = <0>;
+				clock-frequency = <12000000>;
+			};
+		};
+	};
+
+	fragment@2 {
+		target = <&i2c1>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "okay";
+
+			wm8960: wm8960@1a {
+				compatible = "wlf,wm8960";
+				reg = <0x1a>;
+				#sound-dai-cells = <0>;
+				AVDD-supply = <&vdd_5v0_reg>;
+				DVDD-supply = <&vdd_3v3_reg>;
+				clocks = <&wm8960_mclk>;
+				clock-names = "mclk";
+			};
+		};
+	};
+
+	fragment@3 {
+		target = <&gpio>;
+		__overlay__ {
+			tagtagtag_sound_pins: tagtagtag_sound_pins {
+				// 7 = amp shutdown, 8 = amp mute: inputs pulled down until userspace
+				// takes them. 25 = line-out jack detect, pulled up.
+				// 22, 27 = volume switches.
+				brcm,pins = <7 8 25 22 27>;
+				brcm,function = <0 0 0 0 0>;
+				brcm,pull = <1 1 2 0 0>;
+			};
+		};
+	};
+
+	fragment@4 {
+		target = <&sound>;
+		tagtagtag_card: __overlay__ {
+			compatible = "simple-audio-card";
+			simple-audio-card,format = "i2s";
+			simple-audio-card,name = "tagtagtag-sound";
+			status = "okay";
+
+			simple-audio-card,widgets =
+				"Microphone", "Onboard Left Microphone",
+				"Microphone", "Onboard Right Microphone",
+				"Microphone", "External Microphone",
+				"Headphone", "Headphones",
+				"Speaker", "Speaker (tag)",
+				"Speaker", "Speaker (tagtag)";
+
+			// Nabaztag (tag) drives its speaker from the codec's right speaker
+			// output. Nabaztag:tag (tagtag) feeds the headphone outputs into the
+			// MAX9759 amplifier, which drives the speaker. The amplifier has no
+			// kernel driver here, so DAPM only sees the headphone outputs behind
+			// that speaker.
+			simple-audio-card,routing =
+				"Headphones", "OUT3",
+				"Speaker (tag)", "SPK_RP",
+				"Speaker (tag)", "SPK_RN",
+				"Speaker (tagtag)", "HP_L",
+				"Speaker (tagtag)", "HP_R",
+				"LINPUT1", "Onboard Left Microphone",
+				"RINPUT1", "Onboard Right Microphone",
+				"LINPUT1", "External Microphone",
+				"LINPUT2", "External Microphone";
+
+			simple-audio-card,hp-det-gpio = <&gpio 25 0>;
+			pinctrl-names = "default";
+			pinctrl-0 = <&tagtagtag_sound_pins>;
+
+			simple-audio-card,cpu {
+				sound-dai = <&i2s_clk_producer>;
+			};
+
+			simple-audio-card,codec {
+				sound-dai = <&wm8960>;
+			};
+		};
+	};
+
+	__overrides__ {
+		alsaname = <&tagtagtag_card>,"simple-audio-card,name";
+	};
+};
