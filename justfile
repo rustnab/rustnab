@@ -29,3 +29,7 @@ deploy host target=zero2:
 # Run a milestone 0 spike on a rabbit: just spike user@rabbit.local 11 [--no-interactive]
 spike host what *args:
     spikes/run.sh {{host}} {{what}} {{args}}
+
+# Build a flashable image with WiFi and SSH for a rabbit: just image zero1
+image board *args:
+    tools/make-image.sh {{board}} {{args}}

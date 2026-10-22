@@ -37,6 +37,16 @@ just build-zero1      # ARMv6, Zero W
 just deploy rabbit.local
 ```
 
+## Preparing a rabbit
+
+On a Mac, build an SD card image with your WiFi and SSH access:
+
+```sh
+tools/make-image.sh zero1     # or zero2
+```
+
+The script prints the flash command when it finishes. The image holds your WiFi password, so it stays in the git-ignored `images/` folder.
+
 ## License
 
 GPL-3.0-or-later. See [LICENSE](LICENSE).

@@ -17,6 +17,10 @@ Record results in the tables at the end of each spike and commit them. A number 
 
 ## Prepare the card
 
+On a Mac, `tools/make-image.sh zero1` (or `zero2`) builds a ready image: the current Raspberry Pi OS Lite Trixie with your WiFi, a dedicated SSH key, I2C on, and the spike tools installed on first boot. It prints the command to flash it. The rabbit then answers as `rabbit-zero1` or `rabbit-zero2` over SSH, and `spikes/run.sh rabbit-zero1 11` works without a user name. With that image, skip to step 4.
+
+Without a Mac, or to do it by hand:
+
 1. Flash Raspberry Pi OS Lite (Trixie) with Raspberry Pi Imager. For the Zero W take the 32-bit image. For the Zero 2 W take the 64-bit image.
 2. In the Imager settings, set a hostname, enable SSH, and enter your WiFi. comitup is not needed for the spikes.
 3. Boot, log in over SSH, then install the tools:
