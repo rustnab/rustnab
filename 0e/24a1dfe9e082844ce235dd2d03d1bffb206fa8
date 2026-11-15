@@ -1,0 +1,19 @@
+tools/make-image.sh
+  s_f869a35623199b::t_7b5f5ef01f556b 208-212,214-217,239
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0e24a1dfe9e082844ce235dd2d03d1bffb206fa8",
+  "prompts": {},
+  "sessions": {
+    "s_f869a35623199b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d78a8af1-7525-4219-abd5-255a9578449f",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Thomas Lekanger <mail@datagutt.no>"
+    }
+  }
+}
