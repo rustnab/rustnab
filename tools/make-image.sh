@@ -198,6 +198,33 @@ packages:
   - curl
   - bzip2
 
+# A rabbit has no screen, so each boot writes a log to the FAT boot partition,
+# which any laptop can read from the SD card. The first line proves Linux
+# started. Three minutes later the script adds what explains a rabbit that
+# never shows up on the network: the networks the radio can see (a Zero W
+# only has 2.4 GHz), NetworkManager's view, and cloud-init errors. bootcmd runs
+# before write_files on the first boot, which is fine: the timer fires after
+# write_files has created the script.
+write_files:
+  - path: /usr/local/sbin/rustnab-bootlog
+    permissions: "0755"
+    content: |
+      #!/bin/sh
+      exec >>/boot/firmware/rustnab-boot.log 2>&1
+      echo "=== \$(date -Is) uptime \$(cut -d' ' -f1 /proc/uptime)s"
+      cloud-init status --long
+      echo "--- devices"; nmcli device
+      echo "--- visible wifi"; nmcli -f SSID,CHAN,FREQ,SIGNAL,SECURITY device wifi list --rescan yes
+      echo "--- connections"; nmcli -f NAME,TYPE,DEVICE,ACTIVE connection show
+      echo "--- addresses"; ip -br addr
+      echo "--- networkmanager"; journalctl -b -u NetworkManager --no-pager | tail -n 60
+      echo "--- cloud-init problems"; grep -E 'WARNING|ERROR|Traceback' /var/log/cloud-init.log | tail -n 30
+      sync
+
+bootcmd:
+  - [ sh, -c, 'echo "=== boot \$(date -Is), kernel \$(uname -r)" >> /boot/firmware/rustnab-boot.log; sync' ]
+  - [ systemd-run, --on-active=3min, --unit=rustnab-bootlog, /usr/local/sbin/rustnab-bootlog ]
+
 runcmd:
   - [ systemctl, enable, --now, ssh ]
 USER
@@ -221,4 +248,7 @@ your Mac's disk. dd erases the whole target without asking.
 
 First boot takes several minutes: cloud-init installs packages over WiFi.
 Then: ssh $HOST
+
+If the rabbit never shows up, put the card back in the Mac and read
+/Volumes/bootfs/rustnab-boot.log. No line at all means Linux never started.
 DONE
