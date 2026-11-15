@@ -205,7 +205,16 @@ packages:
 # only has 2.4 GHz), NetworkManager's view, and cloud-init errors. bootcmd runs
 # before write_files on the first boot, which is fine: the timer fires after
 # write_files has created the script.
+# WiFi power saving off. The Broadcom chip in the Zero W dozes through the
+# access point's keep-alive probes, and OpenWrt then deauthenticates it for
+# inactivity, so the rabbit drops off the network minutes after joining.
+# NetworkManager reads this file on every boot. runcmd applies it to the
+# running radio without waiting for a reconnect.
 write_files:
+  - path: /etc/NetworkManager/conf.d/rustnab-wifi-powersave.conf
+    content: |
+      [connection]
+      wifi.powersave = 2
   - path: /usr/local/sbin/rustnab-bootlog
     permissions: "0755"
     content: |
@@ -227,6 +236,7 @@ bootcmd:
 
 runcmd:
   - [ systemctl, enable, --now, ssh ]
+  - [ iw, dev, wlan0, set, power_save, "off" ]
 USER
 
 chmod 600 "$OUT"
