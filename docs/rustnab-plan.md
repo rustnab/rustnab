@@ -28,7 +28,7 @@ Two builds, because the Zero 2 W runs a 64-bit kernel and the Zero 1 cannot:
 
 On-device speech is aarch64 only for a hard reason. ONNX Runtime ships no 32-bit ARM binaries and Vosk has no ARMv6 build. Whisper tiny measured about 18 seconds per utterance even on a Zero 2 W. The only engine that runs on ARMv6 is Kaldi through a C++ shim, and that path ends with the old models and the old build pain. We do not take it.
 
-Target OS is Raspberry Pi OS Lite Trixie (Debian 13, kernel 6.12). The armhf smoke build runs on a bare Zero 1 from milestone 1 on, because finding an ARMv6-incompatible crate late is expensive.
+Target OS is Raspberry Pi OS Lite Trixie (Debian 13, kernel 6.12). The rustnab package turns WiFi power saving off through a NetworkManager drop-in. With it on, the Zero W radio sleeps through the access point's keep-alive probes, and OpenWrt deauthenticates the rabbit for inactivity minutes after it joins. The armhf smoke build runs on a bare Zero 1 from milestone 1 on, because finding an ARMv6-incompatible crate late is expensive.
 
 The tagtagtag board also carries a Si7021 temperature and humidity sensor and a LIS3DH accelerometer that pynab never reads. rustnab reads both and exposes them as events from the first release.
 
